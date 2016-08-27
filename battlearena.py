@@ -20,7 +20,7 @@ def decode(bytestring):
 
 print("Welcome to Battle Arena Bot version 0.1 written by James \"Iyouboushi\"")
 if config_json != 1:
-    if config_json['botowner'] is None:
+    if config_json['botowner'] is KeyError:
         print("*** WARNING: There is no bot admin set. Please fix this now.")
         botowner = input("Please enter the bot admin's IRC nick")
     else:
