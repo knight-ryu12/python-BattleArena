@@ -18,6 +18,14 @@ def decode(bytestring):
             continue
     return bytestring.decode('utf8', errors='ignore')
 
+print("Welcome to Battle Arena Bot version 0.1 written by James \"Iyouboushi\"")
+if config_json != 1:
+    if config_json['botowner'] is None:
+        print("*** WARNING: There is no bot admin set. Please fix this now.")
+        botowner = input("Please enter the bot admin's IRC nick")
+    else:
+        print("The bot admin list is currently set to: %s" % config_json['botowner'])
+
 
 x = irc.irc()
 x.connect()
@@ -45,4 +53,4 @@ while True:
             x.send_data("PONG %s" % ping_text)
         elif command == "004":
             print("Join")
-            x.join("#chromatic")
+            x.join("##ldtest")

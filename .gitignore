@@ -87,3 +87,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+.idea/misc.xml
+.idea/modules.xml
+.idea/python-BattleArena.iml
+.idea/workspace.xml
