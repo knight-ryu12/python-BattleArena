@@ -29,7 +29,17 @@ if config_json != 1:
         config_json['botowner'] = botowner
         file = open("config.json",'w')
         file.write(json.dumps(config_json))
-    
+        file.close()
+    try:
+        print("The battle channel is currently set to: %s" % config_json['battle_channel'])
+    except KeyError:
+        print("*** WARNING: There is no battle channel set. Please fix this now.")
+        battlechannel = input("Please enter the IRC channel you're using (include the #):")
+        config_json['battle_channel'] = battlechannel
+        file = open("config.json",'w')
+        file.write(json.dumps(config_json))
+        file.close()
+
 x = irc.irc()
 x.connect()
 x.login("ChromaBot", "8", "Herena", "Python socket RAW IRC BOT")
