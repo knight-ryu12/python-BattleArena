@@ -8,7 +8,7 @@ import irc
 irc_line_re = re.compile(r"^(?::(\S+)\s)?(\S+)(?:\s(?!:)(.+?))?(?:\s:(.+))?$")
 file = open("config.json", 'r')
 config_json = json.load(file)
-
+file.close()
 
 def decode(bytestring):
     for codec in ('utf-8', 'iso-8859-1', 'shift_jis', 'cp1252', 'cp932'):
@@ -18,13 +18,17 @@ def decode(bytestring):
             continue
     return bytestring.decode('utf8', errors='ignore')
 
-print("Welcome to Battle Arena Bot version 0.1 written by James \"Iyouboushi\"")
+print("Welcome to Battle Arena Bot version 0.1 written by Chromaryu, Original is James \"Iyouboushi\"")
+print(config_json)
 if config_json != 1:
     try:
         print("The bot admin list is currently set to: %s" % config_json['botowner'])
     except KeyError:
         print("*** WARNING: There is no bot admin set. Please fix this now.")
-        botowner = input("Please enter the bot admin's IRC nick")
+        botowner = input("Please enter the bot admin's IRC nick:")
+        config_json['botowner'] = botowner
+        file = open("config.json",'w')
+        file.write(json.dumps(config_json))
 
 x = irc.irc()
 x.connect()
