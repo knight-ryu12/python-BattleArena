@@ -29,7 +29,7 @@ if config_json != 1:
         config_json['botowner'] = botowner
         file = open("config.json",'w')
         file.write(json.dumps(config_json))
-
+    
 x = irc.irc()
 x.connect()
 x.login("ChromaBot", "8", "Herena", "Python socket RAW IRC BOT")
